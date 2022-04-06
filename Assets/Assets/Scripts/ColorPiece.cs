@@ -22,7 +22,7 @@ public class ColorPiece : MonoBehaviour {
 
     public ColorSprite[] colorSprites;
 
-    private ColorTye color;
+    public ColorTye color;
 
     private ColorTye Color {
         get { return Color; }
@@ -50,7 +50,6 @@ public class ColorPiece : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        
     }
 
     // Update is called once per frame
