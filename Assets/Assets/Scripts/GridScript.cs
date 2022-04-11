@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GridScript : MonoBehaviour {
-
+    public int clearedTimes = 0;
+    public TextMeshProUGUI text;
     public enum PieceType {
         EMPTY,
         NORMAL,
@@ -17,6 +19,7 @@ public class GridScript : MonoBehaviour {
         public GameObject prefab;
     }
 
+    public GameObject selectedProfile;
 
     public int xDim;
     public int yDim;
@@ -61,6 +64,7 @@ public class GridScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        text.text = "Damage: " + clearedTimes.ToString();
     }
 
     public IEnumerator Fill() {
@@ -144,7 +148,7 @@ public class GridScript : MonoBehaviour {
 
             piece1.GetComponent<MovablePiece>().Move(piece2.x, piece2.y, fillTime);
             piece2.GetComponent<MovablePiece>().Move(piece1X, piece1Y, fillTime);
-
+            clearedTimes = 0;
             ClearAllValidMatches();
             StartCoroutine(Fill());
             } else {
@@ -274,6 +278,7 @@ public class GridScript : MonoBehaviour {
         if (pieces[x, y].IsClearable() && !pieces[x, y].ClearableComponent.IsBeingCleared) {
             pieces[x, y].ClearableComponent.Clear();
             SpawnNewPiece(x, y, PieceType.EMPTY);
+            clearedTimes++;
 
             return true;
         } else return false;

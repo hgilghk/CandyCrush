@@ -29,6 +29,7 @@ public class ClearablePiece : MonoBehaviour {
     }
 
     public void Clear() {
+        gameObject.GetComponent<GamePiece>().Fire();
         isBeingCleared = true;
         StartCoroutine(ClearCoroutine());
     }
