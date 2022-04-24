@@ -73,19 +73,19 @@ public class GamePiece : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        fireMissile();
+        FireMissile();
     }
 
     public void Fire() {
-        fireMissile();
+        FireMissile();
     }
 
-    private void fireMissile() {
-        if (gameObject.tag != "normalPiece" && hasFired == false) return;
+    private void FireMissile() {
+        if (gameObject.tag != "normalPiece" || hasFired == true) return;
         Vector3 fuitPosition;
         fuitPosition = transform.position;
-
-        Instantiate(missile, fuitPosition, Quaternion.identity);
         hasFired = true;
+        Instantiate(missile, fuitPosition, Quaternion.identity);
     }
 }
+

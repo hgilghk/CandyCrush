@@ -276,9 +276,9 @@ public class GridScript : MonoBehaviour {
 
     public bool ClearPiece(int x, int y) {
         if (pieces[x, y].IsClearable() && !pieces[x, y].ClearableComponent.IsBeingCleared) {
+            clearedTimes++;
             pieces[x, y].ClearableComponent.Clear();
             SpawnNewPiece(x, y, PieceType.EMPTY);
-            clearedTimes++;
 
             return true;
         } else return false;
